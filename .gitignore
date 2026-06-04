@@ -1,0 +1,54 @@
+# ---- KiCad ----
+# Backups & auto-saves
+*.bak
+*-bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+_autosave-*
+*-save.kicad_pcb
+*-save.kicad_sch
+*-backups/
+fp-info-cache
+*.lck
+*~
+.history/
+
+# Per-user project-local settings (display state, not design intent)
+*.kicad_prl
+
+# Generated / fabrication outputs
+*.net
+*.rpt
+*.drl
+*.gbr
+*.gbrjob
+*.pos
+*.d356
+*.raw          # ngspice sim output
+gerbers/
+fab/
+jlcpcb/
+production/
+
+# NOTE: keep these TRACKED (do not ignore):
+#   *.kicad_pro, *.kicad_pcb, *.kicad_sch, *.kicad_sym, *.pretty/,
+#   sym-lib-table, fp-lib-table  -> these are the actual design
+
+# ---- kicad-bot ----
+kicad-bot-output/
+*.kicad_bot_metrics.json
+
+# ---- Claude / Claude Code ----
+.claude/settings.local.json
+.claude/*.local.json
+# keep CLAUDE.md and .claude/settings.json + .claude/commands/ tracked (shared config)
+
+# ---- Secrets (distributor APIs, Anthropic keys) ----
+.env
+.env.*
+!.env.example
+
+# ---- OS / editor cruft ----
+.DS_Store
+Thumbs.db
+.vscode/*.local
