@@ -1,0 +1,61 @@
+name: kicad-bot
+
+# CI quality gate for the e-foc hardware design.
+# Runs ERC/DRC, BOM availability checks and visual diffs via embedded-pro/kicad-bot.
+# https://github.com/embedded-pro/kicad-bot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.kicad_sch"
+      - "**.kicad_pcb"
+      - "**.kicad_pro"
+      - ".github/workflows/kicad-bot.yml"
+  pull_request:
+    paths:
+      - "**.kicad_sch"
+      - "**.kicad_pcb"
+      - "**.kicad_pro"
+      - ".github/workflows/kicad-bot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write   # allow posting the diff/report as a PR comment
+
+jobs:
+  kicad-bot:
+    name: ERC / DRC / BOM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          # Full history so kicad-bot can compute schematic/PCB diffs against the base.
+          fetch-depth: 0
+
+      - name: Run kicad-bot
+        uses: embedded-pro/kicad-bot@70386df384189b9a8b887d97e6bed1f5d2d0d32e # main (no tagged release yet)
+        with:
+          run-verify: "true"      # ERC + DRC
+          run-bom-check: "true"   # distributor stock / lifecycle
+          run-diff: "true"        # visual schematic & PCB diffs
+          fail-on-drc: "true"     # DRC violations fail the build
+          fail-on-erc: "true"     # ERC violations fail the build
+          fail-on-eol: "false"    # flag end-of-life parts without failing
+          distributors: "Mouser,Digi-Key"
+        env:
+          # Optional — set these as repository secrets to enable live distributor
+          # pricing/availability. kicad-bot degrades gracefully if unset.
+          MOUSER_KEY: ${{ secrets.MOUSER_KEY }}
+          DIGIKEY_CLIENT_ID: ${{ secrets.DIGIKEY_CLIENT_ID }}
+          DIGIKEY_CLIENT_SECRET: ${{ secrets.DIGIKEY_CLIENT_SECRET }}
+
+      - name: Upload kicad-bot report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: kicad-bot-output
+          path: kicad-bot-output/
+          if-no-files-found: ignore

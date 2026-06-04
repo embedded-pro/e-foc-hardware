@@ -1,0 +1,98 @@
+name: release
+
+# Release pipeline for the e-foc hardware design.
+#
+#   1. release-please tracks Conventional Commits on `main`, opens/maintains a
+#      release PR, and on merge creates the GitHub Release + tag + CHANGELOG.
+#   2. When a release is cut, kicad-bot regenerates the verified fabrication
+#      package (Gerbers, drill, BOM, ERC/DRC reports) which is attached to the
+#      Release as a downloadable build artifact.
+#
+# All third-party actions are pinned to a full commit SHA (with the human-readable
+# version in the trailing comment) per supply-chain hardening best practice.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write        # create releases, tags and the release PR commits
+  pull-requests: write   # open / update the release PR
+
+jobs:
+  # --------------------------------------------------------------------------
+  # 1. Maintain the release PR / cut a release from Conventional Commits.
+  # --------------------------------------------------------------------------
+  release-please:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # --------------------------------------------------------------------------
+  # 2. On a fresh release, build the verified fabrication package and attach it.
+  # --------------------------------------------------------------------------
+  fabrication:
+    name: Build & attach fabrication package
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout released revision
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+          fetch-depth: 0
+
+      - name: Verify and generate fabrication outputs
+        # Runs ERC/DRC (gates the release on a clean design), resolves the BOM,
+        # and emits Gerbers/drill/position files into kicad-bot-output/.
+        uses: embedded-pro/kicad-bot@70386df384189b9a8b887d97e6bed1f5d2d0d32e # main (no tagged release yet)
+        with:
+          run-verify: "true"      # ERC + DRC
+          run-bom-check: "true"   # BOM + distributor availability
+          run-fab: "true"         # Gerbers, drill, position, etc.
+          fail-on-drc: "true"
+          fail-on-erc: "true"
+          fail-on-eol: "false"
+          distributors: "Mouser,Digi-Key"
+        env:
+          MOUSER_KEY: ${{ secrets.MOUSER_KEY }}
+          DIGIKEY_CLIENT_ID: ${{ secrets.DIGIKEY_CLIENT_ID }}
+          DIGIKEY_CLIENT_SECRET: ${{ secrets.DIGIKEY_CLIENT_SECRET }}
+
+      - name: Package fabrication outputs
+        run: |
+          set -euo pipefail
+          tag="${{ needs.release-please.outputs.tag_name }}"
+          pkg="e-foc-hw-${tag}"
+          mkdir -p "dist/${pkg}"
+          # Gerbers / drill / position files, BOM and the ERC/DRC reports.
+          cp -r kicad-bot-output/* "dist/${pkg}/" 2>/dev/null || true
+          cd dist
+          zip -r "${pkg}.zip" "${pkg}"
+          echo "Built dist/${pkg}.zip"
+
+      - name: Attach package to the GitHub Release
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        with:
+          tag_name: ${{ needs.release-please.outputs.tag_name }}
+          files: |
+            dist/e-foc-hw-*.zip
+
+      - name: Upload package as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fabrication-package
+          path: dist/e-foc-hw-*.zip
+          if-no-files-found: warn
