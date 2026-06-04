@@ -14,9 +14,9 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: embedded-pro/kicad-bot@v0
+      - uses: embedded-pro/kicad-bot@dec919920aede0a8f8bc3cbb5252157b800a92a3 # v0.1.2
         with:
           run-verify: "true"
           run-diff: "true"
