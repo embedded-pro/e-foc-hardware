@@ -32,7 +32,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "driver.kicad_sch"
+		(property "Sheetfile" "schematic/driver.kicad_sch"
 			(at 63.5 79.3246 0)
 			(show_name yes)
 			(do_not_autoplace no)
@@ -78,7 +78,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "microcontroller-connector.kicad_sch"
+		(property "Sheetfile" "schematic/microcontroller-connector.kicad_sch"
 			(at 109.22 123.7746 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -124,7 +124,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "flash-mem.kicad_sch"
+		(property "Sheetfile" "schematic/flash-mem.kicad_sch"
 			(at 187.96 141.5546 0)
 			(show_name yes)
 			(do_not_autoplace no)
@@ -170,7 +170,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "adc-conditioner.kicad_sch"
+		(property "Sheetfile" "schematic/adc-conditioner.kicad_sch"
 			(at 50.8 158.0646 0)
 			(show_name yes)
 			(do_not_autoplace no)
@@ -216,7 +216,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "eeprom-mem.kicad_sch"
+		(property "Sheetfile" "schematic/eeprom-mem.kicad_sch"
 			(at 187.96 103.4546 0)
 			(show_name yes)
 			(do_not_autoplace no)
@@ -262,7 +262,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "untitled.kicad_sch"
+		(property "Sheetfile" "schematic/untitled.kicad_sch"
 			(at 114.3 47.5746 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -308,7 +308,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "serial-com.kicad_sch"
+		(property "Sheetfile" "schematic/serial-com.kicad_sch"
 			(at 189.23 56.4646 0)
 			(show_name yes)
 			(do_not_autoplace no)
@@ -354,7 +354,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "can-bus.kicad_sch"
+		(property "Sheetfile" "schematic/can-bus.kicad_sch"
 			(at 50.8 125.0446 0)
 			(show_name yes)
 			(do_not_autoplace no)

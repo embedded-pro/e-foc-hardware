@@ -2121,7 +2121,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "25526440-7a88-4571-aa5d-be4716dc93fc")
-		(property "Reference" "R?"
+		(property "Reference" "R63"
 			(at 108.712 100.584 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2185,7 +2185,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "R?")
+					(reference "R63")
 					(unit 1)
 				)
 			)
@@ -2203,7 +2203,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38364cb1-5068-4f65-bfb6-d37d554bfe12")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR063"
 			(at 153.67 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -2263,7 +2263,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "#PWR043")
+					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -2280,7 +2280,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4fb4a346-43c3-4b94-885a-eea680ecfd9a")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR062"
 			(at 133.35 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -2340,7 +2340,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "#PWR042")
+					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -2357,7 +2357,7 @@
 		(in_pos_files yes)
 		(dnp yes)
 		(uuid "52a5870e-aee6-4ebc-aada-25ce00988733")
-		(property "Reference" "R?"
+		(property "Reference" "R64"
 			(at 108.712 105.664 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2421,7 +2421,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "R?")
+					(reference "R64")
 					(unit 1)
 				)
 			)
@@ -2438,7 +2438,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c7492e5b-79ba-439a-9047-b9f8945e1fcd")
-		(property "Reference" "R?"
+		(property "Reference" "R61"
 			(at 108.712 90.424 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2502,7 +2502,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "R?")
+					(reference "R61")
 					(unit 1)
 				)
 			)
@@ -2520,7 +2520,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d2e394ef-a888-4228-8c0b-f6bc030328db")
-		(property "Reference" "J?"
+		(property "Reference" "J3"
 			(at 146.05 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2649,7 +2649,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "J?")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -2666,7 +2666,7 @@
 		(in_pos_files yes)
 		(dnp yes)
 		(uuid "e02f9ec6-7200-42b0-aff4-8321c2758d18")
-		(property "Reference" "R?"
+		(property "Reference" "R62"
 			(at 108.712 95.504 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2730,7 +2730,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/42d3be01-d70a-467f-b6c8-64df21d508bf"
-					(reference "R?")
+					(reference "R62")
 					(unit 1)
 				)
 			)

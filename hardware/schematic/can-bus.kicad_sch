@@ -265,7 +265,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b602b6af-f80a-444b-9083-529970dc5c0f")
-		(property "Reference" "U1"
+		(property "Reference" "U7"
 			(at 146.9233 73.66 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -347,7 +347,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "U1")
+					(reference "U7")
 					(unit 1)
 				)
 			)

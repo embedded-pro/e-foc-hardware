@@ -85,19 +85,27 @@ functional block:
 
 ```
 e-foc/
-├── e-foc.kicad_pro                  # KiCad project
-├── e-foc.kicad_sch                  # Top-level (root) schematic
-├── e-foc.kicad_pcb                  # PCB layout
-├── power-supply.kicad_sch           # Hierarchical sheets ↓
-├── driver.kicad_sch
-├── adc-conditioner.kicad_sch
-├── microcontroller-connector.kicad_sch
-├── can-bus.kicad_sch
-├── serial-com.kicad_sch
-├── eeprom-mem.kicad_sch
-├── flash-mem.kicad_sch
-└── .github/workflows/kicad-bot.yml  # CI quality gate
+├── hardware/                        # KiCad project (kept together — KiCad requirement)
+│   ├── e-foc.kicad_pro              #   project
+│   ├── e-foc.kicad_sch              #   top-level (root) schematic
+│   ├── e-foc.kicad_pcb              #   PCB layout
+│   └── schematic/                   #   hierarchical sub-sheets ↓
+│       ├── untitled.kicad_sch       #     power-supply sheet
+│       ├── driver.kicad_sch
+│       ├── adc-conditioner.kicad_sch
+│       ├── microcontroller-connector.kicad_sch
+│       ├── can-bus.kicad_sch
+│       ├── serial-com.kicad_sch
+│       ├── eeprom-mem.kicad_sch
+│       └── flash-mem.kicad_sch
+├── .github/workflows/kicad-bot.yml  # CI quality gate
+└── .github/workflows/release.yml    # release + fabrication package
 ```
+
+> The project (`.kicad_pro`), root schematic and board must share a folder —
+> KiCad locates them by the project's name and path — so they live together in
+> `hardware/`. The hierarchical sub-sheets are referenced by relative path and
+> are grouped under `hardware/schematic/`.
 
 ---
 
@@ -110,7 +118,7 @@ This is a [**KiCad 10**](https://www.kicad.org/) project.
    git clone https://github.com/embedded-pro/e-foc-hw.git
    cd e-foc-hw
    ```
-2. Open `e-foc.kicad_pro` in KiCad.
+2. Open `hardware/e-foc.kicad_pro` in KiCad.
 3. Open the schematic editor to browse the hierarchical sheets, or the PCB
    editor for the board layout.
 
@@ -119,8 +127,8 @@ This is a [**KiCad 10**](https://www.kicad.org/) project.
 With KiCad 8+ installed you can run electrical / design-rule checks locally:
 
 ```bash
-kicad-cli sch erc  --output erc.json --format json e-foc.kicad_sch
-kicad-cli pcb drc  --output drc.json --format json e-foc.kicad_pcb
+kicad-cli sch erc  --output erc.json --format json hardware/e-foc.kicad_sch
+kicad-cli pcb drc  --output drc.json --format json hardware/e-foc.kicad_pcb
 ```
 
 ---
