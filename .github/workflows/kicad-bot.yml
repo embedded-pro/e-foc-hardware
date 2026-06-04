@@ -3,9 +3,7 @@ name: kicad-bot
 on:
   push:
     branches: [main]
-    paths: ["**.kicad_sch", "**.kicad_pcb"]
   pull_request:
-    paths: ["**.kicad_sch", "**.kicad_pcb"]
 
 jobs:
   kicad-bot:
