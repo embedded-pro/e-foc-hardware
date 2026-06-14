@@ -1289,16 +1289,16 @@
 		)
 	)
 	(junction
-		(at 213.36 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "190f27bb-dae5-4c2c-846b-008ab2f0b271")
-	)
-	(junction
 		(at 199.39 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "36ffaf4d-c485-41a9-8550-c7c66223d101")
+	)
+	(junction
+		(at 213.36 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "96b3363e-d22f-478b-9cdb-0f920ae81ef2")
 	)
 	(junction
 		(at 199.39 105.41)
@@ -1307,20 +1307,20 @@
 		(uuid "9b574ad6-f506-44c1-a95d-84772460ee34")
 	)
 	(junction
-		(at 218.44 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b447048b-0e72-4416-928e-ff858a50a489")
-	)
-	(junction
 		(at 199.39 82.55)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b916506a-7ace-42c1-a8ad-3c30ba1559be")
 	)
+	(junction
+		(at 218.44 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d5c8d2ae-aeef-4dbf-b966-62b642fd0ac9")
+	)
 	(wire
 		(pts
-			(xy 224.79 92.71) (xy 213.36 92.71)
+			(xy 207.01 92.71) (xy 218.44 92.71)
 		)
 		(stroke
 			(width 0)
@@ -1350,13 +1350,13 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 92.71) (xy 213.36 101.6)
+			(xy 213.36 95.25) (xy 213.36 101.6)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0f628c92-0959-442b-93c8-85eabc5d1fb2")
+		(uuid "0f2bd0b7-b174-41ac-9621-212eca536d8c")
 	)
 	(wire
 		(pts
@@ -1400,23 +1400,13 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 95.25) (xy 224.79 95.25)
+			(xy 207.01 95.25) (xy 213.36 95.25)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "23ae0375-6744-41fc-93f3-99bc5f887961")
-	)
-	(wire
-		(pts
-			(xy 207.01 95.25) (xy 218.44 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2fa9b229-ccc2-4c9a-a4e3-2f0d695ad2a1")
 	)
 	(wire
 		(pts
@@ -1437,6 +1427,16 @@
 			(type default)
 		)
 		(uuid "46800597-727d-48ea-ad59-80fbb9521fb2")
+	)
+	(wire
+		(pts
+			(xy 218.44 92.71) (xy 224.79 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47ca7619-a58e-44b7-aaaf-0f4ca8b9b04b")
 	)
 	(wire
 		(pts
@@ -1470,6 +1470,16 @@
 	)
 	(wire
 		(pts
+			(xy 213.36 95.25) (xy 224.79 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62e965d5-38e2-4c6b-acfd-4cbfa1aa35db")
+	)
+	(wire
+		(pts
 			(xy 151.13 95.25) (xy 163.83 95.25)
 		)
 		(stroke
@@ -1480,13 +1490,13 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 101.6) (xy 218.44 95.25)
+			(xy 218.44 92.71) (xy 218.44 101.6)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "85ffb055-e1d3-4514-8439-d096e93cd934")
+		(uuid "79f79fa6-b836-4433-b3e1-11ea89850038")
 	)
 	(wire
 		(pts
@@ -1640,16 +1650,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 92.71) (xy 207.01 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e803b600-ec98-4eef-8048-cb3276bd13ca")
-	)
-	(wire
-		(pts
 			(xy 184.15 92.71) (xy 190.5 92.71)
 		)
 		(stroke
@@ -1712,7 +1712,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1116ec3f-0684-4311-ac5d-f1ca2b8ac25f")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR050"
 			(at 173.99 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -1772,7 +1772,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR052")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -1790,7 +1790,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1d974c41-17d9-47e9-a025-a7e36c71f348")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR051"
 			(at 185.42 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -1850,7 +1850,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR053")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -1867,7 +1867,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1e351716-4e9b-438d-9e1c-4d4f9efb7458")
-		(property "Reference" "R50"
+		(property "Reference" "R49"
 			(at 161.29 106.6799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1931,7 +1931,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "R50")
+					(reference "R49")
 					(unit 1)
 				)
 			)
@@ -1949,7 +1949,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ede8124-e45a-4604-8152-fd5900472922")
-		(property "Reference" "D7"
+		(property "Reference" "D6"
 			(at 222.25 105.4099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2017,7 +2017,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "D7")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -2035,7 +2035,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b08c324-646d-4640-9d8f-1ebeef185058")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR049"
 			(at 173.99 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -2095,7 +2095,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR051")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -2113,7 +2113,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "450ba7ac-8183-444a-aa5d-011192a58784")
-		(property "Reference" "#PWR056"
+		(property "Reference" "#PWR054"
 			(at 215.9 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2173,7 +2173,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR056")
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -2190,7 +2190,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "472f27f4-3038-43f9-8140-8aacc40b6c14")
-		(property "Reference" "C31"
+		(property "Reference" "C30"
 			(at 190.5 104.1399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2212,7 +2212,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 187.6552 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -2254,7 +2254,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "C31")
+					(reference "C30")
 					(unit 1)
 				)
 			)
@@ -2272,7 +2272,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4edf422b-df8b-4ab6-b714-c95d5f8189b4")
-		(property "Reference" "#PWR055"
+		(property "Reference" "#PWR053"
 			(at 186.69 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2332,7 +2332,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR055")
+					(reference "#PWR053")
 					(unit 1)
 				)
 			)
@@ -2350,7 +2350,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "51f9a621-d7f9-48db-9516-a10afb73c611")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR052"
 			(at 185.42 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -2410,7 +2410,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR054")
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -2427,7 +2427,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5e026fe8-50ee-4845-bd27-d6fea48c589c")
-		(property "Reference" "C29"
+		(property "Reference" "C28"
 			(at 154.178 106.426 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2449,7 +2449,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 152.0952 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -2491,7 +2491,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "C29")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -2508,7 +2508,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5e32b4dc-186a-44bc-a24c-c6df9ea2ae08")
-		(property "Reference" "R52"
+		(property "Reference" "R51"
 			(at 201.93 97.7899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2572,7 +2572,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "R52")
+					(reference "R51")
 					(unit 1)
 				)
 			)
@@ -2590,7 +2590,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8f913d65-5a24-4a84-97df-1b7fd98b1ee8")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR048"
 			(at 158.75 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2650,7 +2650,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR050")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -2850,7 +2850,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c36ea0fc-b937-4568-8e99-b8a12bb0abec")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR047"
 			(at 151.13 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2910,7 +2910,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "#PWR049")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
@@ -2927,7 +2927,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c8699e1a-6cef-46a4-b2aa-4ee5f1377c5a")
-		(property "Reference" "C30"
+		(property "Reference" "C29"
 			(at 189.23 66.0399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2949,7 +2949,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 186.3852 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -2991,7 +2991,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "C30")
+					(reference "C29")
 					(unit 1)
 				)
 			)
@@ -3008,7 +3008,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "eb315b68-89d9-42bc-b676-209b8c4363e9")
-		(property "Reference" "R51"
+		(property "Reference" "R50"
 			(at 201.93 87.6299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3072,7 +3072,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/deaffcfb-90c2-4afd-9218-7765e99e9a8e"
-					(reference "R51")
+					(reference "R50")
 					(unit 1)
 				)
 			)

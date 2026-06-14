@@ -4,7 +4,107 @@
 	(generator_version "10.0")
 	(uuid "34e5c7b2-bc7d-4136-97dd-86505a14228c")
 	(paper "A4")
-	(lib_symbols)
+	(lib_symbols
+		(symbol "Mechanical:MountingHole"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "H"
+				(at 0 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MountingHole"
+				(at 0 3.175 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Mounting Hole without connection"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "mounting hole"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "MountingHole*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MountingHole_0_1"
+				(circle
+					(center 0 0)
+					(radius 1.27)
+					(stroke
+						(width 1.27)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
 	(wire
 		(pts
 			(xy 149.86 68.58) (xy 167.64 68.58)
@@ -287,6 +387,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 83.82) (xy 220.98 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b3e437e-1955-46d3-b337-d30efa62b0e0")
+	)
+	(wire
+		(pts
 			(xy 204.47 119.38) (xy 219.71 119.38)
 		)
 		(stroke
@@ -304,6 +414,16 @@
 			(type default)
 		)
 		(uuid "6bb0d68a-16df-4551-93aa-9cb0efd5444d")
+	)
+	(wire
+		(pts
+			(xy 205.74 88.9) (xy 220.98 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73079839-e04e-43cf-859e-4b2a6a19c153")
 	)
 	(wire
 		(pts
@@ -394,6 +514,16 @@
 			(type default)
 		)
 		(uuid "91aec4f5-3b23-4afd-9ddd-766703d19bd9")
+	)
+	(wire
+		(pts
+			(xy 205.74 86.36) (xy 220.98 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "931aedd4-1ab2-420d-b675-229c3f73af26")
 	)
 	(wire
 		(pts
@@ -785,6 +915,310 @@
 		)
 		(uuid "ffe74b6c-c263-415c-9f24-b01d114f5e32")
 	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 222.25 22.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3a603b79-df64-4bb5-8752-b8a8de4042ef")
+		(property "Reference" "H1"
+			(at 224.79 21.5899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 224.79 24.1299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
+			(at 222.25 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 222.25 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "e-foc"
+				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 243.84 31.75 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c0af3bf-e025-4361-a2f6-7576df74a5e2")
+		(property "Reference" "H4"
+			(at 246.38 30.4799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 246.38 33.0199 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
+			(at 243.84 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 243.84 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "e-foc"
+				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
+					(reference "H4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 222.25 31.75 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a38c2502-b5ee-4dc6-bdcb-ad1e8bc3b699")
+		(property "Reference" "H2"
+			(at 224.79 30.4799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 224.79 33.0199 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
+			(at 222.25 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 222.25 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "e-foc"
+				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
+					(reference "H2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 243.84 22.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ef5b1c0d-c286-4ade-a172-9211b2d29d8c")
+		(property "Reference" "H3"
+			(at 246.38 21.5899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 246.38 24.1299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad_TopBottom"
+			(at 243.84 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 243.84 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "e-foc"
+				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
+					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(sheet
 		(at 167.64 101.6)
 		(size 36.83 26.67)
@@ -823,7 +1257,7 @@
 				(justify left top)
 			)
 		)
-		(pin "CUR_A_H" passive
+		(pin "CUR_A_P" passive
 			(at 170.18 128.27 270)
 			(uuid "eb397158-f5c7-40ae-8e03-0b0f41ed34ac")
 			(effects
@@ -833,7 +1267,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_A_L" passive
+		(pin "CUR_A_N" passive
 			(at 172.72 128.27 270)
 			(uuid "516b6f35-0697-496e-9db3-0045a9410416")
 			(effects
@@ -843,7 +1277,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_B_H" passive
+		(pin "CUR_B_P" passive
 			(at 176.53 128.27 270)
 			(uuid "3d97ee4a-8f11-48e8-aa51-dc3999dabb7c")
 			(effects
@@ -853,7 +1287,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_B_L" passive
+		(pin "CUR_B_N" passive
 			(at 179.07 128.27 270)
 			(uuid "97679bd5-2c4c-423d-93f8-7c715bd06aa0")
 			(effects
@@ -863,7 +1297,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_C_H" passive
+		(pin "CUR_C_P" passive
 			(at 182.88 128.27 270)
 			(uuid "bb939fbb-ab2f-4619-863f-c8aca6a96fa6")
 			(effects
@@ -873,7 +1307,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_C_L" passive
+		(pin "CUR_C_N" passive
 			(at 185.42 128.27 270)
 			(uuid "94c7dcbb-edfd-407b-90e4-ffd584ef6b85")
 			(effects
@@ -883,7 +1317,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_TOTAL_H" passive
+		(pin "CUR_TOTAL_P" passive
 			(at 189.23 128.27 270)
 			(uuid "3e7cafa0-d9f6-4c65-bb3a-16f3c92c87c3")
 			(effects
@@ -893,7 +1327,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_TOTAL_L" passive
+		(pin "CUR_TOTAL_N" passive
 			(at 191.77 128.27 270)
 			(uuid "90fb6030-b2cc-498c-a0aa-631c5771f4ef")
 			(effects
@@ -1209,6 +1643,36 @@
 				(justify left)
 			)
 		)
+		(pin "ENC_A" input
+			(at 205.74 83.82 0)
+			(uuid "b8f3238d-fdf3-4074-945a-415b3421ee16")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "ENC_B" input
+			(at 205.74 86.36 0)
+			(uuid "400769a1-6c8c-4ec0-9473-f28a08c8fff8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "ENC_C" input
+			(at 205.74 88.9 0)
+			(uuid "6b123121-e367-46ee-8a4c-02a0a02a192a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
@@ -1304,6 +1768,82 @@
 		)
 	)
 	(sheet
+		(at 220.98 81.28)
+		(size 33.02 10.16)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "98f9d71b-35be-468c-8335-e6d27faaee17")
+		(property "Sheetname" "encoder"
+			(at 220.98 80.5684 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "encoder.kicad_sch"
+			(at 220.98 92.0246 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ENC_A" output
+			(at 220.98 83.82 180)
+			(uuid "350d865a-3df3-4d46-a7b7-62920993e2d4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ENC_B" output
+			(at 220.98 86.36 180)
+			(uuid "00b2c03e-f477-4837-bb92-5900b946c8ba")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ENC_C" output
+			(at 220.98 88.9 180)
+			(uuid "df50c18c-6151-446a-b7a1-b287859a029c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "e-foc"
+				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 104.14 101.6)
 		(size 36.83 26.67)
 		(exclude_from_sim no)
@@ -1341,7 +1881,7 @@
 				(justify left top)
 			)
 		)
-		(pin "CUR_A_H" passive
+		(pin "CUR_A_P" passive
 			(at 107.95 128.27 270)
 			(uuid "8b9640f4-330d-490b-9b00-54ec6e1d50a4")
 			(effects
@@ -1401,7 +1941,7 @@
 				(justify right)
 			)
 		)
-		(pin "CUR_A_L" input
+		(pin "CUR_A_N" passive
 			(at 110.49 128.27 270)
 			(uuid "ec2dde81-f30c-4a9c-9624-c53a77201925")
 			(effects
@@ -1411,7 +1951,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_B_L" input
+		(pin "CUR_B_N" passive
 			(at 116.84 128.27 270)
 			(uuid "579f3b5d-df7e-4cb9-a03f-ae3b6da7e460")
 			(effects
@@ -1421,17 +1961,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_C_H" input
-			(at 114.3 128.27 270)
-			(uuid "2f77aea7-e96c-4fbf-9db0-5c40e58f8065")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "CUR_C_L" input
+		(pin "CUR_C_N" passive
 			(at 123.19 128.27 270)
 			(uuid "2f4d2f60-57ef-461d-98b2-ac0a65124a19")
 			(effects
@@ -1441,7 +1971,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_TOTAL_H" input
+		(pin "CUR_C_P" passive
 			(at 120.65 128.27 270)
 			(uuid "d0beeb1e-416b-47d0-9de8-f4abeb33c9ec")
 			(effects
@@ -1451,7 +1981,7 @@
 				(justify left)
 			)
 		)
-		(pin "CUR_TOTAL_L" input
+		(pin "CUR_TOTAL_N" passive
 			(at 104.14 106.68 180)
 			(uuid "08d5a378-f745-4110-9e89-c71eeafe3fa3")
 			(effects
@@ -1461,9 +1991,19 @@
 				(justify left)
 			)
 		)
-		(pin "CUR­_B_H" input
+		(pin "CUR_TOTAL_P" passive
 			(at 104.14 104.14 180)
 			(uuid "81463bbb-6736-42b5-8158-6233b4e639bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CUR­_B_P" input
+			(at 114.3 128.27 270)
+			(uuid "f8b64f29-3eab-466d-b06d-6999ab602e78")
 			(effects
 				(font
 					(size 1.27 1.27)

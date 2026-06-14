@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "CSD88537ND") (type "KiCad") (uri "${KIPRJMOD}/components/CSD88537ND.kicad_sym") (options "") (descr ""))
+)
