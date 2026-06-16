@@ -21,8 +21,9 @@ current sensing, protection and peripheral connectivity around it.
 
 ## Highlights
 
-- **Three-phase inverter** built from six TI `CSD19506KTT` 100 V NexFET™ MOSFETs
-  (three half-bridges) — high current capability with low R<sub>DS(on)</sub>.
+- **Three-phase inverter** built from three TI `CSD88537ND` 60 V dual NexFET™
+  half-bridge power blocks (one per phase) — low R<sub>DS(on)</sub>, sized for a
+  50 V bus at 5 A.
 - **`FAN7888` 3-phase gate driver** with bootstrap high-side supply for clean,
   cross-conduction-protected switching.
 - **Low-side shunt current sensing** (0.02 Ω) on each phase, amplified and
@@ -30,7 +31,7 @@ current sensing, protection and peripheral connectivity around it.
   for the controller's ADC.
 - **Wide-input switching power supply** — `LM5164` 100 V synchronous buck plus
   `AMS1117` linear regulators generating the +15 V gate-drive rail, +5 V and
-  +3.3 V logic rails, with reverse-polarity (P-MOSFET) and TVS protection.
+  +3.3 V logic rails, with TVS bus-clamp protection (`SMCJ51A`).
 - **CAN connectivity** via an `SN65HVD230` transceiver for multi-axis /
   networked control.
 - **Non-volatile storage** — `24LC04` I²C EEPROM (calibration / parameters) and
@@ -49,8 +50,8 @@ functional block:
 | Sheet | Function | Key parts |
 |-------|----------|-----------|
 | `e-foc.kicad_sch` | Top-level sheet wiring all blocks together | — |
-| `power-supply` | Wide-input supply: gate-drive + logic rails, protection | `LM5164`, `AMS1117-5.0`, `AMS1117-3.3`, `IRF9540N`, `SMAJ82A` |
-| `driver` | Three-phase inverter, gate drive, phase shunts, motor terminals | `FAN7888`, 6× `CSD19506KTT`, 0.02 Ω shunts |
+| `power-supply` | Wide-input supply: gate-drive + logic rails, protection | `LM5164`, `AMS1117-3.3`, `SMCJ51A` (D1 bus TVS) |
+| `driver` | Three-phase inverter, gate drive, phase shunts, motor terminals | `FAN7888`, 3× `CSD88537ND`, 0.02 Ω shunts |
 | `adc-conditioner` | Current/voltage sense amplification & anti-alias filtering | `TLV9062`, `TLV9064` |
 | `microcontroller-connector` | 2×12 header to the MCU module + signal break-out | `Conn_02x12` |
 | `can-bus` | CAN field-bus interface | `SN65HVD230` |
@@ -60,24 +61,46 @@ functional block:
 
 ---
 
-## Specifications (target)
+## Design requirements (spec)
+
+These are the **hard design targets** the board must meet — the authoritative
+requirements used for design review and sign-off.
+
+| # | Requirement | Target |
+|---|-------------|--------|
+| R1 | Input bus voltage | **50 V** max |
+| R2 | Output current | **5 A** max continuous (DC) |
+| R3 | Motor types | 3-phase brushless (BLDC) / PMSM, **FOC** control |
+| R4 | PWM switching frequency | **50 kHz** max |
+| R5 | Configuration storage | **EEPROM** available for parameters / calibration |
+| R6 | Firmware-update storage | **External flash** for FW update |
+| R7 | Field-bus | **CAN @ 1 Mbps** max, **GND present in the connector** |
+| R8 | PCB stack-up | **2 layers** is sufficient |
+| R9 | Position feedback | input for **encoder OR hall sensor** |
+
+### As-built component capability
 
 | Parameter | Value |
 |-----------|-------|
-| Motor types | 3-phase BLDC / PMSM |
-| Power topology | 3× half-bridge, low-side shunt sensing |
-| Switching devices | TI `CSD19506KTT`, 100 V N-channel NexFET™ |
-| Bus voltage | Wide input, components rated to 100 V (TVS clamp ~82 V) |
+| Power topology | 3× half-bridge (1 dual FET per phase), low-side shunt sensing |
+| Switching devices | TI `CSD88537ND`, 60 V dual N-channel NexFET™ half-bridge (Q1–Q3) — 10 V margin over the 50 V bus (R1) |
+| Bus TVS clamp | D1 = `SMCJ51A`, 51 V standoff / 1500 W (see note below) |
 | Gate driver | `FAN7888`, 3-phase, bootstrap high-side |
 | Current sense | 0.02 Ω low-side shunt per phase + op-amp gain stage |
-| Logic rails | +3.3 V / +5 V / +15 V (gate drive) |
-| Protection | Reverse-polarity P-MOSFET, TVS, zener clamps |
-| Comms | CAN (`SN65HVD230`), serial/debug |
-| Storage | I²C EEPROM (`24LC04`), SPI flash (`W25Q32`, 32 Mbit) |
+| Logic rails | +3.3 V logic + gate-drive rail (FAN7888 VDD) |
+| Protection | TVS bus clamp (`SMCJ51A`), CAN ESD array, gate clamps |
+| Comms | CAN (`SN65HVD230`, R7), serial / debug |
+| Storage | I²C EEPROM (`24LC04`, R5), SPI flash (`W25Q32`, 32 Mbit, R6) |
 | Controller | External 24-pin MCU module (STM32 / TI Tiva, via firmware abstraction) |
 
-> Specifications reflect the rated capability of the selected components and are
-> finalised once the PCB layout and bring-up are complete.
+> **D1 TVS sizing.** The bus is 50 V max; the `CSD88537ND` is a 60 V FET. A
+> standard TVS cannot both stand off 50 V *and* clamp below 60 V (clamp ratio
+> ~1.5×), so `SMCJ51A` (Vrwm 51 V, Vbr ≥ 56.7 V, Vc ≈ 82 V) is chosen to absorb
+> gross load-dump / inductive transients without conducting in normal operation.
+> The 10 V FET margin against **switching ringing** must be held by layout —
+> tight commutation loop, adequate bulk capacitance, and (if needed) an RC
+> snubber — not by the TVS. Compliance with R1–R9 is confirmed during design
+> review and bring-up.
 
 ---
 

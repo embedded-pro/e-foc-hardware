@@ -28,6 +28,7 @@ fp-info-cache
 gerbers/
 fab/
 jlcpcb/
+review_exports/  # local kicad-cli review package (schematic PDF, BOM, ERC/DRC, gerbers)
 production/
 
 # NOTE: keep these TRACKED (do not ignore):
