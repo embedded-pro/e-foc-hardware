@@ -1146,7 +1146,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "21f678c7-cfef-445f-80f9-162a362db17d")
-		(property "Reference" "#PWR083"
+		(property "Reference" "#PWR084"
 			(at 146.05 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -1206,7 +1206,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR083")
+					(reference "#PWR084")
 					(unit 1)
 				)
 			)
@@ -1305,7 +1305,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5d31345b-3c9d-4968-a3d0-e1e2c3b86736")
-		(property "Reference" "#PWR084"
+		(property "Reference" "#PWR085"
 			(at 175.26 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -1365,7 +1365,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR084")
+					(reference "#PWR085")
 					(unit 1)
 				)
 			)
@@ -1383,7 +1383,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "62db7741-4923-4781-85e3-379e31fefd17")
-		(property "Reference" "#PWR081"
+		(property "Reference" "#PWR082"
 			(at 133.35 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -1443,7 +1443,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR081")
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -1623,7 +1623,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "acb96389-67e1-4ba7-9b65-2668a7df8f6c")
-		(property "Reference" "#PWR080"
+		(property "Reference" "#PWR081"
 			(at 104.14 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -1683,7 +1683,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR080")
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -1882,7 +1882,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bdd9392f-1b83-4567-a01c-7bd08e55c927")
-		(property "Reference" "#PWR085"
+		(property "Reference" "#PWR086"
 			(at 175.26 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -1942,7 +1942,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR085")
+					(reference "#PWR086")
 					(unit 1)
 				)
 			)
@@ -1960,7 +1960,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c89af50b-de8d-42fe-bdb8-9694316c21d3")
-		(property "Reference" "#PWR082"
+		(property "Reference" "#PWR083"
 			(at 146.05 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -2020,7 +2020,7 @@
 		(instances
 			(project "e-foc"
 				(path "/34e5c7b2-bc7d-4136-97dd-86505a14228c/6cd2b0a0-683f-4196-92a9-4a51f926d77e"
-					(reference "#PWR082")
+					(reference "#PWR083")
 					(unit 1)
 				)
 			)

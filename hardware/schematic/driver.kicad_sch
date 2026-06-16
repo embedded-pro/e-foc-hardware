@@ -7760,7 +7760,7 @@
 				)
 			)
 		)
-		(property "Value" "+20V"
+		(property "Value" "+15V"
 			(at 102.87 46.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9301,7 +9301,7 @@
 				)
 			)
 		)
-		(property "Value" "+20V"
+		(property "Value" "+15V"
 			(at 102.87 134.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9691,7 +9691,7 @@
 				)
 			)
 		)
-		(property "Value" "+20V"
+		(property "Value" "+15V"
 			(at 102.87 73.66 0)
 			(show_name no)
 			(do_not_autoplace no)

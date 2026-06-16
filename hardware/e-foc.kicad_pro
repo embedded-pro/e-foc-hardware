@@ -624,6 +624,9 @@
     },
     "net_colors": null,
     "netclass_assignments": {
+      "+15V": [
+        "RAILS"
+      ],
       "+20V": [
         "RAILS"
       ],

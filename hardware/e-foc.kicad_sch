@@ -1794,7 +1794,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "encoder.kicad_sch"
+		(property "Sheetfile" "schematic/encoder.kicad_sch"
 			(at 220.98 92.0246 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2112,7 +2112,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "schematic/untitled.kicad_sch"
+		(property "Sheetfile" "schematic/power-supply.kicad_sch"
 			(at 104.14 97.1046 0)
 			(show_name no)
 			(do_not_autoplace no)
