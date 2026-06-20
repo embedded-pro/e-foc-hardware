@@ -29,6 +29,7 @@ gerbers/
 fab/
 jlcpcb/
 production/
+manufacturing/
 # local kicad-cli review package (schematic PDF, BOM, ERC/DRC, gerbers, pcb_views)
 review_exports/
 

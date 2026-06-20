@@ -317,7 +317,7 @@ def dump_design_rules() -> None:
         lines.append("")
 
     # Also copy any custom design-rules file if present.
-    dru = HW_DIR / "e-foc.kicad_dru"
+    dru = PRO_FILE.with_suffix(".kicad_dru")
     if dru.exists():
         lines.append("Custom .kicad_dru:")
         lines.append(dru.read_text(encoding="utf-8"))
@@ -330,14 +330,48 @@ def dump_design_rules() -> None:
 # Main
 # ---------------------------------------------------------------------------
 
+def _resolve_project(name: str | None, pcb: str | None) -> None:
+    """Point the module-level path globals at the chosen project. Default is the
+    top-level e-foc board (back-compat: `python export_review.py` with no args).
+    Pass --name <basename> for a sub-project under hardware/<name>/<name>.*, or
+    --pcb <path> to point at an explicit .kicad_pcb (sibling .sch/.pro assumed).
+    Each project gets its own review_exports/<name>/ subfolder (e-foc stays at
+    the review_exports/ root for back-compat)."""
+    global SCH_FILE, PCB_FILE, PRO_FILE, OUT_DIR, GERBER_DIR, IMAGE_DIR
+
+    if pcb:
+        stem = Path(pcb).with_suffix("")
+        PCB_FILE = Path(pcb)
+        SCH_FILE = stem.with_suffix(".kicad_sch")
+        PRO_FILE = stem.with_suffix(".kicad_pro")
+        label = name or stem.name
+        OUT_DIR = PROJECT_ROOT / "review_exports" / label
+    elif name and name != "e-foc":
+        base = HW_DIR / name / name
+        SCH_FILE = base.with_suffix(".kicad_sch")
+        PCB_FILE = base.with_suffix(".kicad_pcb")
+        PRO_FILE = base.with_suffix(".kicad_pro")
+        OUT_DIR = PROJECT_ROOT / "review_exports" / name
+    # else: keep e-foc defaults already set at module level.
+
+    GERBER_DIR = OUT_DIR / "gerbers"
+    IMAGE_DIR = OUT_DIR / "pcb_views"
+
+
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Export KiCad review package for e-foc.")
+    ap = argparse.ArgumentParser(description="Export a KiCad review package.")
     ap.add_argument("--kicad-cli", help="Path to kicad-cli.exe")
+    ap.add_argument("--name", help="Project basename under hardware/<name>/ "
+                    "(default: e-foc top-level board)")
+    ap.add_argument("--pcb", help="Explicit path to a .kicad_pcb (overrides --name)")
     ap.add_argument("--skip-sch", action="store_true", help="Skip schematic exports")
     ap.add_argument("--skip-pcb", action="store_true", help="Skip PCB exports")
     args = ap.parse_args()
 
-    for f in (SCH_FILE, PCB_FILE, PRO_FILE):
+    _resolve_project(args.name, args.pcb)
+
+    needed = (PCB_FILE,) if args.skip_sch else (SCH_FILE, PCB_FILE, PRO_FILE)
+    for f in needed:
         if not f.exists():
             sys.exit(f"Missing project file: {f}")
 
@@ -345,7 +379,7 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     print(f"kicad-cli : {cli}")
-    print(f"project   : {HW_DIR}")
+    print(f"project   : {PCB_FILE.parent}")
     print(f"output    : {OUT_DIR}")
 
     if not args.skip_sch:
