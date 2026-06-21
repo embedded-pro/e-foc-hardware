@@ -47,10 +47,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent  # script lives in <root>/scripts/
 HW_DIR = PROJECT_ROOT / "hardware"
 
 PROJECT_NAME = "e-foc"
-SCH_FILE = HW_DIR / "e-foc.kicad_sch"
-PCB_FILE = HW_DIR / "e-foc.kicad_pcb"
+SCH_FILE = HW_DIR / "e-foc" / "e-foc.kicad_sch"
+PCB_FILE = HW_DIR / "e-foc" / "e-foc.kicad_pcb"
 
-OUT_DIR = PROJECT_ROOT / "manufacturing"
+OUT_DIR = PROJECT_ROOT / "manufacturing" / "e-foc"
 GERBER_DIR = OUT_DIR / "gerbers"
 
 # Symbol field names that may carry the LCSC part number, in priority order.
@@ -298,9 +298,10 @@ def export_cpl(cli: str) -> None:
 # ---------------------------------------------------------------------------
 
 def _resolve_project(name: str | None, pcb: str | None) -> None:
-    """Point path globals at the chosen project. Default = top-level e-foc board.
-    --name <basename> selects hardware/<name>/<name>.*; --pcb gives an explicit
-    .kicad_pcb. Sub-projects write to manufacturing/<name>/."""
+    """Point path globals at the chosen project. Every board lives under
+    hardware/<name>/<name>.* and writes to manufacturing/<name>/. Default board
+    is e-foc. --name <basename> selects another board; --pcb gives an explicit
+    .kicad_pcb."""
     global PROJECT_NAME, SCH_FILE, PCB_FILE, OUT_DIR, GERBER_DIR
 
     if pcb:
@@ -309,13 +310,13 @@ def _resolve_project(name: str | None, pcb: str | None) -> None:
         SCH_FILE = stem.with_suffix(".kicad_sch")
         PROJECT_NAME = name or stem.name
         OUT_DIR = PROJECT_ROOT / "manufacturing" / PROJECT_NAME
-    elif name and name != "e-foc":
+    else:
+        name = name or "e-foc"
         base = HW_DIR / name / name
         SCH_FILE = base.with_suffix(".kicad_sch")
         PCB_FILE = base.with_suffix(".kicad_pcb")
         PROJECT_NAME = name
         OUT_DIR = PROJECT_ROOT / "manufacturing" / name
-    # else: keep e-foc defaults (manufacturing/ root).
 
     GERBER_DIR = OUT_DIR / "gerbers"
 

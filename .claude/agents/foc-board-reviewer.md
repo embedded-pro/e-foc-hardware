@@ -41,20 +41,23 @@ high-di/dt power stages. You perform rigorous, evidence-based design reviews.
 
 ## Inputs (only these)
 
-From the project root, expect:
+Each board exports to its own `review_exports/<board>/` folder (e.g.
+`review_exports/e-foc/`, `review_exports/tiva-80pin-adapter/`). From the project
+root, for the board under review expect:
 - `README.md` — the authoritative spec (a requirements table, e.g. R1..Rn) plus
   the as-built component list. Treat the requirements table as the contract.
-- `review_exports/schematic.pdf` — full schematic (your only view of it).
-- `review_exports/bom.csv` — bill of materials.
-- `review_exports/erc.rpt` / `erc.json` — Electrical Rules Check.
-- `review_exports/drc.rpt` / `drc.json` — Design Rules Check incl. schematic
-  parity and unconnected items.
-- `review_exports/design_rules.txt` — net classes, clearances, track widths.
-- `review_exports/board_stats.txt` — board statistics (layer count, vias, etc.).
-- `review_exports/gerbers/` — one Gerber per layer (list the dir to confirm the
-  real copper-layer count; you need not parse geometry).
-- `review_exports/pcb_views/*.png` — rendered layout views (copper top/bottom,
-  silk top/bottom, assembly top/bottom, plus inner copper on >2-layer boards).
+- `review_exports/<board>/schematic.pdf` — full schematic (your only view of it).
+- `review_exports/<board>/bom.csv` — bill of materials.
+- `review_exports/<board>/erc.rpt` / `erc.json` — Electrical Rules Check.
+- `review_exports/<board>/drc.rpt` / `drc.json` — Design Rules Check incl.
+  schematic parity and unconnected items.
+- `review_exports/<board>/design_rules.txt` — net classes, clearances, track widths.
+- `review_exports/<board>/board_stats.txt` — board statistics (layer count, vias).
+- `review_exports/<board>/gerbers/` — one Gerber per layer (list the dir to
+  confirm the real copper-layer count; you need not parse geometry).
+- `review_exports/<board>/pcb_views/*.png` — rendered layout views (copper
+  top/bottom, silk top/bottom, assembly top/bottom, plus inner copper on
+  >2-layer boards).
 
 ## Step 0 — generate the review package
 
@@ -77,12 +80,13 @@ python scripts/export_review.py
   `pip install pymupdf`, then re-run.
 - This is the only command the agent runs that writes files, and it writes only
   into `review_exports/` (see rule 1).
-- **Multi-board / stack reviews.** The repo may hold more than one board (e.g.
-  `hardware/e-foc.kicad_pcb` plus `hardware/tiva-80pin-adapter/`). Regenerate a
-  package for EACH board: `python scripts/export_review.py` (top-level e-foc) and
-  `python scripts/export_review.py --name <subdir>` (or `--pcb <path>`) for each
-  other board — sub-projects land in `review_exports/<name>/`. Review every board,
-  then run the stack-mate check (item 9) across the pair(s) the user describes.
+- **Multi-board / stack reviews.** Each board is its own project under
+  `hardware/<board>/` (e.g. `hardware/e-foc/`, `hardware/tiva-80pin-adapter/`).
+  Regenerate a package for EACH board: `python scripts/export_review.py` (default
+  board = e-foc) and `python scripts/export_review.py --name <board>` (or
+  `--pcb <path>`) for the others — each lands in `review_exports/<board>/`. Review
+  every board, then run the stack-mate check (item 9) across the pair(s) the user
+  describes.
 
 ## What to evaluate
 
@@ -206,8 +210,8 @@ python scripts/export_review.py
      pin-1 must be checked against the vendor's documented geometry; mark
      CANNOT-VERIFY if that board's file/coords aren't provided.
 
-10. **JLCPCB fab/assembly-export sanity (if `manufacturing/` exists).** The fab
-    package is produced by `scripts/export_jlcpcb.py` into `manufacturing/`.
+10. **JLCPCB fab/assembly-export sanity (if `manufacturing/<board>/` exists).** The
+    fab package is produced by `scripts/export_jlcpcb.py` into `manufacturing/<board>/`.
     Sanity-check what would actually be uploaded:
     - **Gerbers:** the `*-gerbers-*.zip` contains all copper + mask + paste +
       silk + Edge.Cuts + PTH/NPTH drill (≈14 files for a 2-layer board); newer

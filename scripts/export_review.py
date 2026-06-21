@@ -41,11 +41,11 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent  # script lives in <root>/scripts/
 HW_DIR = PROJECT_ROOT / "hardware"
 
-SCH_FILE = HW_DIR / "e-foc.kicad_sch"
-PCB_FILE = HW_DIR / "e-foc.kicad_pcb"
-PRO_FILE = HW_DIR / "e-foc.kicad_pro"
+SCH_FILE = HW_DIR / "e-foc" / "e-foc.kicad_sch"
+PCB_FILE = HW_DIR / "e-foc" / "e-foc.kicad_pcb"
+PRO_FILE = HW_DIR / "e-foc" / "e-foc.kicad_pro"
 
-OUT_DIR = PROJECT_ROOT / "review_exports"
+OUT_DIR = PROJECT_ROOT / "review_exports" / "e-foc"
 GERBER_DIR = OUT_DIR / "gerbers"
 IMAGE_DIR = OUT_DIR / "pcb_views"
 
@@ -331,12 +331,11 @@ def dump_design_rules() -> None:
 # ---------------------------------------------------------------------------
 
 def _resolve_project(name: str | None, pcb: str | None) -> None:
-    """Point the module-level path globals at the chosen project. Default is the
-    top-level e-foc board (back-compat: `python export_review.py` with no args).
-    Pass --name <basename> for a sub-project under hardware/<name>/<name>.*, or
-    --pcb <path> to point at an explicit .kicad_pcb (sibling .sch/.pro assumed).
-    Each project gets its own review_exports/<name>/ subfolder (e-foc stays at
-    the review_exports/ root for back-compat)."""
+    """Point the module-level path globals at the chosen project. Every board
+    lives under hardware/<name>/<name>.* and exports to review_exports/<name>/.
+    Default board is e-foc (`python export_review.py` with no args -> hardware/
+    e-foc/). Pass --name <basename> for another board, or --pcb <path> to point
+    at an explicit .kicad_pcb (sibling .sch/.pro assumed)."""
     global SCH_FILE, PCB_FILE, PRO_FILE, OUT_DIR, GERBER_DIR, IMAGE_DIR
 
     if pcb:
@@ -346,13 +345,13 @@ def _resolve_project(name: str | None, pcb: str | None) -> None:
         PRO_FILE = stem.with_suffix(".kicad_pro")
         label = name or stem.name
         OUT_DIR = PROJECT_ROOT / "review_exports" / label
-    elif name and name != "e-foc":
+    else:
+        name = name or "e-foc"
         base = HW_DIR / name / name
         SCH_FILE = base.with_suffix(".kicad_sch")
         PCB_FILE = base.with_suffix(".kicad_pcb")
         PRO_FILE = base.with_suffix(".kicad_pro")
         OUT_DIR = PROJECT_ROOT / "review_exports" / name
-    # else: keep e-foc defaults already set at module level.
 
     GERBER_DIR = OUT_DIR / "gerbers"
     IMAGE_DIR = OUT_DIR / "pcb_views"

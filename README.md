@@ -108,27 +108,33 @@ requirements used for design review and sign-off.
 
 ```
 e-foc/
-├── hardware/                        # KiCad project (kept together — KiCad requirement)
-│   ├── e-foc.kicad_pro              #   project
-│   ├── e-foc.kicad_sch              #   top-level (root) schematic
-│   ├── e-foc.kicad_pcb              #   PCB layout
-│   └── schematic/                   #   hierarchical sub-sheets ↓
-│       ├── untitled.kicad_sch       #     power-supply sheet
-│       ├── driver.kicad_sch
-│       ├── adc-conditioner.kicad_sch
-│       ├── microcontroller-connector.kicad_sch
-│       ├── can-bus.kicad_sch
-│       ├── serial-com.kicad_sch
-│       ├── eeprom-mem.kicad_sch
-│       └── flash-mem.kicad_sch
-├── .github/workflows/kicad-bot.yml  # CI quality gate
-└── .github/workflows/release.yml    # release + fabrication package
+├── hardware/                            # KiCad projects — one folder per board
+│   ├── e-foc/                           #   main motor-driver board
+│   │   ├── e-foc.kicad_pro
+│   │   ├── e-foc.kicad_sch              #     top-level (root) schematic
+│   │   ├── e-foc.kicad_pcb              #     PCB layout
+│   │   ├── sym-lib-table
+│   │   ├── components/                  #     project symbol libs (e.g. CSD88537ND)
+│   │   └── schematic/                   #     hierarchical sub-sheets
+│   │       ├── power-supply.kicad_sch
+│   │       ├── driver.kicad_sch
+│   │       └── … adc-conditioner, can-bus, encoder, eeprom-mem,
+│   │             flash-mem, microcontroller-connector, serial-com
+│   └── tiva-80pin-adapter/              #   EK-TM4C1294XL ↔ e-foc adapter board
+│       ├── tiva-80pin-adapter.kicad_pro
+│       ├── tiva-80pin-adapter.kicad_sch
+│       └── tiva-80pin-adapter.kicad_pcb
+├── scripts/                            # export helpers (run per board)
+│   ├── export_review.py                #   review package  -> review_exports/<board>/
+│   └── export_jlcpcb.py                #   fab + assembly  -> manufacturing/<board>/
+└── .github/workflows/                  # CI: kicad-bot.yml (quality gate) + release.yml
 ```
 
-> The project (`.kicad_pro`), root schematic and board must share a folder —
-> KiCad locates them by the project's name and path — so they live together in
-> `hardware/`. The hierarchical sub-sheets are referenced by relative path and
-> are grouped under `hardware/schematic/`.
+> Each board is a self-contained KiCad project in its own `hardware/<board>/`
+> folder — the `.kicad_pro`, root schematic and board share that folder (KiCad
+> locates them by name and path). Hierarchical sub-sheets and project symbol libs
+> are referenced by relative path within the board folder. Generated outputs are
+> gitignored and land under `review_exports/<board>/` and `manufacturing/<board>/`.
 
 ---
 
@@ -141,7 +147,8 @@ This is a [**KiCad 10**](https://www.kicad.org/) project.
    git clone https://github.com/embedded-pro/e-foc-hw.git
    cd e-foc-hw
    ```
-2. Open `hardware/e-foc.kicad_pro` in KiCad.
+2. Open `hardware/e-foc/e-foc.kicad_pro` (or
+   `hardware/tiva-80pin-adapter/tiva-80pin-adapter.kicad_pro`) in KiCad.
 3. Open the schematic editor to browse the hierarchical sheets, or the PCB
    editor for the board layout.
 
@@ -150,9 +157,13 @@ This is a [**KiCad 10**](https://www.kicad.org/) project.
 With KiCad 8+ installed you can run electrical / design-rule checks locally:
 
 ```bash
-kicad-cli sch erc  --output erc.json --format json hardware/e-foc.kicad_sch
-kicad-cli pcb drc  --output drc.json --format json hardware/e-foc.kicad_pcb
+kicad-cli sch erc  --output erc.json --format json hardware/e-foc/e-foc.kicad_sch
+kicad-cli pcb drc  --output drc.json --format json hardware/e-foc/e-foc.kicad_pcb
 ```
+
+Or use the export helpers (any board): `python scripts/export_review.py` for the
+e-foc board, `python scripts/export_review.py --name tiva-80pin-adapter` for the
+adapter; `scripts/export_jlcpcb.py` likewise for the fab/assembly package.
 
 ---
 
