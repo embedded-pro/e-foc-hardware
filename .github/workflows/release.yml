@@ -63,9 +63,12 @@ jobs:
         uses: embedded-pro/kicad-bot@dbe30bb6e70872d2a0dbf5b006e42442ce434c95 # v0.1.3
         with:
           project-dir: "hardware/${{ matrix.board }}"
+          kicad-version: "10"     # board files are KiCad 10 format (action default is 9)
           run-verify: "true"      # ERC + DRC
           fail-on-drc: "true"
           fail-on-erc: "true"
+          upload-artifact: "false"   # we attach our own bundle; avoids matrix name collision
+          pr-comment: "false"        # release runs on push/tag, not a PR
 
       - name: Install KiCad CLI
         # KiCad 10 stable PPA — must match the board file format (generator 10.x).
