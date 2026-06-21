@@ -7,17 +7,7 @@ name: kicad-bot
 on:
   push:
     branches: [main]
-    paths:
-      - "**.kicad_sch"
-      - "**.kicad_pcb"
-      - "**.kicad_pro"
-      - ".github/workflows/kicad-bot.yml"
   pull_request:
-    paths:
-      - "**.kicad_sch"
-      - "**.kicad_pcb"
-      - "**.kicad_pro"
-      - ".github/workflows/kicad-bot.yml"
   workflow_dispatch:
 
 permissions:
