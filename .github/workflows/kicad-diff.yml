@@ -7,12 +7,6 @@ name: kicad-diff
 
 on:
   pull_request:
-    paths:
-      - "**.kicad_sch"
-      - "**.kicad_pcb"
-      - "**.kicad_pro"
-      - "scripts/visual_diff.py"
-      - ".github/workflows/kicad-diff.yml"
   workflow_dispatch:
 
 permissions:
