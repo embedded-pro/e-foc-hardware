@@ -1,0 +1,63 @@
+name: kicad-diff
+
+# Visual schematic & PCB diff for pull requests: renders the PR head and the
+# base with kicad-cli and produces a red/green overlay (added/removed) per board.
+# kicad-bot's built-in diff (Phase 3) is not available yet, so this does it with
+# kicad-cli + Pillow (no KiAuto/GUI automation). Output is uploaded as an artifact.
+
+on:
+  pull_request:
+    paths:
+      - "**.kicad_sch"
+      - "**.kicad_pcb"
+      - "**.kicad_pro"
+      - "scripts/visual_diff.py"
+      - ".github/workflows/kicad-diff.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diff:
+    name: Visual diff (${{ matrix.board }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        board: [e-foc, tiva-80pin-adapter]
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0          # need the base commit for the diff
+
+      - name: Add base worktree
+        run: git worktree add ../base ${{ github.event.pull_request.base.sha }}
+
+      - name: Install KiCad CLI + imaging deps
+        # KiCad 10 stable PPA — must match the board file format (generator 10.x).
+        run: |
+          set -euo pipefail
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends kicad python3-pip
+          python3 -m pip install --break-system-packages --quiet pymupdf pillow numpy
+
+      - name: Render visual diff
+        run: |
+          set -euo pipefail
+          python3 scripts/visual_diff.py \
+            --name "${{ matrix.board }}" \
+            --old-root ../base \
+            --new-root . \
+            --out diff
+
+      - name: Upload diff images
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: visual-diff-${{ matrix.board }}
+          path: diff/${{ matrix.board }}/
+          if-no-files-found: warn

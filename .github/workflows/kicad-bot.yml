@@ -1,0 +1,54 @@
+name: kicad-bot
+
+# CI quality gate for the e-foc hardware design.
+# Runs ERC/DRC, BOM availability checks and visual diffs via embedded-pro/kicad-bot.
+# https://github.com/embedded-pro/kicad-bot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.kicad_sch"
+      - "**.kicad_pcb"
+      - "**.kicad_pro"
+      - ".github/workflows/kicad-bot.yml"
+  pull_request:
+    paths:
+      - "**.kicad_sch"
+      - "**.kicad_pcb"
+      - "**.kicad_pro"
+      - ".github/workflows/kicad-bot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write   # allow posting the diff/report as a PR comment
+
+jobs:
+  kicad-bot:
+    name: ERC / DRC / BOM (${{ matrix.board }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false          # check every board even if one fails
+      matrix:
+        board: [e-foc, tiva-80pin-adapter]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          # Full history so kicad-bot can compute schematic/PCB diffs against the base.
+          fetch-depth: 0
+
+      - name: Run kicad-bot
+        uses: embedded-pro/kicad-bot@dbe30bb6e70872d2a0dbf5b006e42442ce434c95 # v0.1.3
+        with:
+          project-dir: "hardware/${{ matrix.board }}"   # one KiCad project per board
+          kicad-version: "10"     # board files are KiCad 10 format (action default is 9)
+          run-verify: "true"      # ERC + DRC — the only phase implemented in v0.1.3
+          run-bom-check: "false"  # BOM/distributor check not available yet (kicad-bot Phase 2)
+          run-diff: "false"       # visual schematic/PCB diff not available yet (Phase 3)
+          fail-on-drc: "true"     # DRC violations fail the build
+          fail-on-erc: "true"     # ERC violations fail the build
+          # kicad-bot uploads its own report; keep the artifact name unique per
+          # matrix board so the two jobs don't collide on the same name.
+          artifact-name: "kicad-bot-output-${{ matrix.board }}"

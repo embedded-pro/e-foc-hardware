@@ -5,7 +5,7 @@
       "command": "C:\\Users\\Gabriel\\AppData\\Local\\Programs\\Python\\Python314\\Scripts\\kicad-mcp-pro.exe",
       "args": [
         "--transport", "stdio",
-        "--project-dir", "C:\\Users\\Gabriel\\Desktop\\brushless_motor_driver\\e-foc",
+        "--project-dir", "C:\\Users\\Gabriel\\Desktop\\brushless_motor_driver\\e-foc\\hardware",
         "--profile", "schematic_only"
       ]
     }

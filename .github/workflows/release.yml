@@ -1,0 +1,103 @@
+name: release
+
+# Release pipeline for the e-foc hardware design.
+#
+#   1. release-please tracks Conventional Commits on `main`, opens/maintains a
+#      release PR, and on merge creates the GitHub Release + tag + CHANGELOG.
+#   2. When a release is cut, each board is re-verified (ERC/DRC via kicad-bot)
+#      and a per-project bundle is built with scripts/export_release.py
+#      (schematic PDF + board PDFs + Gerbers + BOM + CPL) and attached to the
+#      Release — one zip per board.
+#
+# All third-party actions are pinned to a full commit SHA (with the human-readable
+# version in the trailing comment) per supply-chain hardening best practice.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write        # create releases, tags and the release PR commits
+  pull-requests: write   # open / update the release PR
+
+jobs:
+  # --------------------------------------------------------------------------
+  # 1. Maintain the release PR / cut a release from Conventional Commits.
+  # --------------------------------------------------------------------------
+  release-please:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # --------------------------------------------------------------------------
+  # 2. On a fresh release, build the verified fabrication package and attach it.
+  # --------------------------------------------------------------------------
+  fabrication:
+    name: Build & attach fabrication package (${{ matrix.board }})
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false          # build every board's bundle even if one fails
+      matrix:
+        board: [e-foc, tiva-80pin-adapter]
+    steps:
+      - name: Checkout released revision
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+          fetch-depth: 0
+
+      - name: Verify design (ERC/DRC) — gate the release
+        # Re-run ERC/DRC on this board; a violation fails the release.
+        uses: embedded-pro/kicad-bot@dbe30bb6e70872d2a0dbf5b006e42442ce434c95 # v0.1.3
+        with:
+          project-dir: "hardware/${{ matrix.board }}"
+          kicad-version: "10"     # board files are KiCad 10 format (action default is 9)
+          run-verify: "true"      # ERC + DRC
+          fail-on-drc: "true"
+          fail-on-erc: "true"
+          upload-artifact: "false"   # we attach our own bundle; avoids matrix name collision
+          pr-comment: "false"        # release runs on push/tag, not a PR
+
+      - name: Install KiCad CLI
+        # KiCad 10 stable PPA — must match the board file format (generator 10.x).
+        run: |
+          set -euo pipefail
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends kicad
+          kicad-cli version
+
+      - name: Build release bundle
+        # One zip per project: schematic PDF + board PDFs (silk/copper top+bottom)
+        # + gerbers + BOM + CPL  ->  release/<board>-<tag>.zip
+        run: |
+          set -euo pipefail
+          python3 scripts/export_release.py \
+            --name "${{ matrix.board }}" \
+            --version "${{ needs.release-please.outputs.tag_name }}"
+
+      - name: Attach bundle to the GitHub Release
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        with:
+          tag_name: ${{ needs.release-please.outputs.tag_name }}
+          files: release/${{ matrix.board }}-${{ needs.release-please.outputs.tag_name }}.zip
+
+      - name: Upload bundle as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fabrication-package-${{ matrix.board }}
+          path: release/${{ matrix.board }}-*.zip
+          if-no-files-found: warn
