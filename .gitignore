@@ -30,6 +30,8 @@ fab/
 jlcpcb/
 production/
 manufacturing/
+# per-board release bundles (export_release.py)
+release/
 # local kicad-cli review package (schematic PDF, BOM, ERC/DRC, gerbers, pcb_views)
 review_exports/
 
