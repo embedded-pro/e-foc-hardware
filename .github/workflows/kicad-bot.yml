@@ -44,19 +44,11 @@ jobs:
         with:
           project-dir: "hardware/${{ matrix.board }}"   # one KiCad project per board
           kicad-version: "10"     # board files are KiCad 10 format (action default is 9)
-          run-verify: "true"      # ERC + DRC
-          run-bom-check: "true"   # distributor stock / lifecycle
-          run-diff: "true"        # visual schematic & PCB diffs
+          run-verify: "true"      # ERC + DRC — the only phase implemented in v0.1.3
+          run-bom-check: "false"  # BOM/distributor check not available yet (kicad-bot Phase 2)
+          run-diff: "false"       # visual schematic/PCB diff not available yet (Phase 3)
           fail-on-drc: "true"     # DRC violations fail the build
           fail-on-erc: "true"     # ERC violations fail the build
-          fail-on-eol: "false"    # flag end-of-life parts without failing
-          distributors: "Mouser,Digi-Key"
           # kicad-bot uploads its own report; keep the artifact name unique per
           # matrix board so the two jobs don't collide on the same name.
           artifact-name: "kicad-bot-output-${{ matrix.board }}"
-        env:
-          # Optional — set these as repository secrets to enable live distributor
-          # pricing/availability. kicad-bot degrades gracefully if unset.
-          MOUSER_KEY: ${{ secrets.MOUSER_KEY }}
-          DIGIKEY_CLIENT_ID: ${{ secrets.DIGIKEY_CLIENT_ID }}
-          DIGIKEY_CLIENT_SECRET: ${{ secrets.DIGIKEY_CLIENT_SECRET }}
